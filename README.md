@@ -41,9 +41,16 @@ npm start                 # http://localhost:5000
 ## OAuth Setup
 - **Google**: Google Cloud Console → Credentials → OAuth client ID (Web). Redirect URI: `BASE_URL/api/v1/auth/google/callback`
 - **GitHub**: Settings → Developer settings → OAuth Apps. Callback URL: `BASE_URL/api/v1/auth/github/callback`
-git add .
-git commit -m "Add screenshots to README"
-git push
+## Screenshots
+
+### 1. Local Login (bcrypt + JWT)
+![Local Login](screenshots/01-local-login.png)
+
+### 2. Google OAuth 2.0 Login
+![Google OAuth](screenshots/02-google-oauth.png)
+
+### 3. Invalid Credentials (401)
+![Invalid Login](screenshots/03-invalid-login.png)
 ## Security Notes
 - Passwords: bcrypt (cost 12), salted automatically. No plain-text storage.
 - Refresh tokens are stored **hashed (SHA-256)** in DB; reuse of an old token revokes all sessions of that user.
