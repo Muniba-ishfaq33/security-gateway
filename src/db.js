@@ -1,7 +1,12 @@
 const mysql = require('mysql2/promise');
 
 const pool = process.env.MYSQL_URL
-  ? mysql.createPool(process.env.MYSQL_URL)
+  ? mysql.createPool({
+      uri: process.env.MYSQL_URL.split('?')[0],
+      ssl: { rejectUnauthorized: false },
+      waitForConnections: true,
+      connectionLimit: 10,
+    })
   : mysql.createPool({
       host: process.env.DB_HOST || 'localhost',
       port: Number(process.env.DB_PORT) || 3306,
